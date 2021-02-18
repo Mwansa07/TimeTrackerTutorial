@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TimeTrackerTutorial.Services.Navigation;
 using TinyIoC;
 using Xamarin.Forms;
 
@@ -19,6 +20,7 @@ namespace TimeTrackerTutorial.PageModels.Base
 
 
             //Register Services (services are registered as singletons by default)
+            _container.Register<INavigationService, NavigationService>();
         }
 
         public static T Resolve<T>() where T : class
@@ -33,6 +35,11 @@ namespace TimeTrackerTutorial.PageModels.Base
             var pageModel = _container.Resolve(pageModelType);
             page.BindingContext = pageModel;
             return page;
+        }
+
+        static void Register<TPageModel, TPage>() where TPageModel : PageModelBase where TPage : Page
+        {
+
         }
     }
 }
