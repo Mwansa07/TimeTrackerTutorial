@@ -17,9 +17,9 @@ namespace TimeTrackerTutorial.PageModels.Base
             _container = new TinyIoCContainer();
             _viewLookup = new Dictionary<Type, Type>();
 
-            //Register Pages and Page Models
-            Register<LoginPageModel, LoginPage>();
+            //Register Pages and Page Models 
             Register<DashboardPageModel, DashboardPage>();
+            Register<LoginPageModel, LoginPage>();
             Register<ProfilePageModel, ProfilePage>();
             Register<SettingsPageModel, SettingsPage>();
             Register<SummaryPageModel, SummaryPage>();

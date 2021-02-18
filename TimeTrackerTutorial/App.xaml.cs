@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
+using TimeTrackerTutorial.PageModels;
+using TimeTrackerTutorial.PageModels.Base;
+using TimeTrackerTutorial.Services.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,11 +14,18 @@ namespace TimeTrackerTutorial
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            
         }
 
-        protected override void OnStart()
+        Task InitNavigation()
         {
+            var navService = PageModelLocator.Resolve<INavigationService>();
+            return navService.NavigateToAsync<LoginPageModel>();
+        }
+
+        protected override async void OnStart()
+        {
+            await InitNavigation();
         }
 
         protected override void OnSleep()
