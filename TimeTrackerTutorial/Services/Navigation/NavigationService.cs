@@ -16,7 +16,7 @@ namespace TimeTrackerTutorial.Services.Navigation
             return App.Current.MainPage.Navigation.PopAsync();
         }
 
-        public Task NavigateToAsync<TPageModelBase>(object navigationData = null, bool setRoot = false)
+        public async Task NavigateToAsync<TPageModelBase>(object navigationData = null, bool setRoot = false)
         {
             var page = PageModelLocator.CreatePageFor(typeof(TPageModelBase));
 
@@ -28,14 +28,18 @@ namespace TimeTrackerTutorial.Services.Navigation
             {
                 if (App.Current.MainPage is NavigationPage navPage)
                 {
-                    return navPage.PushAsync(page);
+                    await navPage.PushAsync(page);
                 }
                 else
                 {
                     App.Current.MainPage = new NavigationPage(page);
                 }
             }
-            return Task.CompletedTask;
+
+            if (page.BindingContext is PageModelBase pmBase)
+            {
+                await pmBase.InitializeAsync(navigationData);
+            }
         }
     }
 }

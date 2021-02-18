@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace TimeTrackerTutorial.PageModels.Base
@@ -19,6 +20,11 @@ namespace TimeTrackerTutorial.PageModels.Base
         {
             get => _isLoading;
             set => SetProperty(ref _isLoading, value);
+        }
+
+        public virtual Task InitializeAsync(object navigationData = null)
+        {
+            return Task.CompletedTask;
         }
 
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
