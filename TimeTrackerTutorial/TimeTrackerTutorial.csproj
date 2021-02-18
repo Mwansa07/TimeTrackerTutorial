@@ -20,5 +20,6 @@
     <Folder Include="PageModels\" />
     <Folder Include="Services\" />
     <Folder Include="PageModels\Base\" />
+    <Folder Include="TinyIoC\" />
   </ItemGroup>
 </Project>
