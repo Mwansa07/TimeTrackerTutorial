@@ -22,5 +22,6 @@
     <Folder Include="PageModels\Base\" />
     <Folder Include="TinyIoC\" />
     <Folder Include="Services\Navigation\" />
+    <Folder Include="Services\Account\" />
   </ItemGroup>
 </Project>
