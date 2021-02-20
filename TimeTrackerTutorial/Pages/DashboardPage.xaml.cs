@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace TimeTrackerTutorial.Pages
 {
-    public partial class DashboardPage : ContentPage
+    public partial class DashboardPage : TabbedPage
     {
         public DashboardPage()
         {
