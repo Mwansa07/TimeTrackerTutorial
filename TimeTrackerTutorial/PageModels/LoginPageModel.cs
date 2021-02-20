@@ -8,19 +8,33 @@ namespace TimeTrackerTutorial.PageModels
 {
     public class LoginPageModel : PageModelBase
     {
-        private ICommand _signInCommand;
+        private ICommand _loginCommand;
 
-        public ICommand SignInCommand
+        public ICommand LoginCommand
         {
-            get => _signInCommand;
-            set => SetProperty(ref _signInCommand, value);
+            get => _loginCommand;
+            set => SetProperty(ref _loginCommand, value);
+        }
+
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set => SetProperty(ref _username, value);
+        }
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
         }
 
         private INavigationService _navigationService;
         public LoginPageModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            SignInCommand = new Command(OnSignInAction);
+            LoginCommand = new Command(OnSignInAction);
         }
 
         private void OnSignInAction(object obj)

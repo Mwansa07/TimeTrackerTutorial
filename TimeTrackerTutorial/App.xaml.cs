@@ -13,8 +13,6 @@ namespace TimeTrackerTutorial
         public App()
         {
             InitializeComponent();
-
-            
         }
 
         Task InitNavigation()
