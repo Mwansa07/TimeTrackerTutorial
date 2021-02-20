@@ -1,17 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TimeTrackerTutorial.PageModels.Base;
 
 namespace TimeTrackerTutorial.PageModels
 {
     public class DashboardPageModel : PageModelBase
     {
-        private LoginPageModel _loginPM;
-        public LoginPageModel LoginPageModel
-        {
-            get => _loginPM;
-            set => SetProperty(ref _loginPM, value);
-        }
-
         private ProfilePageModel _profilePM;
         public ProfilePageModel ProfilePageModel
         {
@@ -38,6 +32,26 @@ namespace TimeTrackerTutorial.PageModels
         {
             get => _timePM;
             set => SetProperty(ref _timePM, value);
+        }
+
+        public DashboardPageModel(ProfilePageModel profilePM,
+            SettingsPageModel settingPM,
+            SummaryPageModel summaryPM,
+            TimeClockPageModel timePM)
+        {
+            ProfilePageModel = profilePM;
+            SettingsPageModel = settingPM;
+            SummaryPageModel = summaryPM;
+            TimeClockPageModel = timePM;
+        }
+
+        public override Task InitializeAsync(object navigationData = null)
+        {
+            return Task.WhenAny(base.InitializeAsync(navigationData),
+                ProfilePageModel.InitializeAsync(null),
+                SettingsPageModel.InitializeAsync(null),
+                SummaryPageModel.InitializeAsync(null),
+                TimeClockPageModel.InitializeAsync(null));
         }
     }
 }
