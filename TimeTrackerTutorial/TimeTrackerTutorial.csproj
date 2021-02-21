@@ -23,5 +23,7 @@
     <Folder Include="TinyIoC\" />
     <Folder Include="Services\Navigation\" />
     <Folder Include="Services\Account\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Buttons\" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace TimeTrackerTutorial.PageModels.Base
 {
-    public class PageModelBase : BindableObject
+    public class PageModelBase : ExtendedBindableObject
     {
         string _title;
         public string Title
@@ -25,18 +25,6 @@ namespace TimeTrackerTutorial.PageModels.Base
         public virtual Task InitializeAsync(object navigationData = null)
         {
             return Task.CompletedTask;
-        }
-
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }

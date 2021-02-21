@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using TimeTrackerTutorial.Models;
 using TimeTrackerTutorial.PageModels.Base;
 
 namespace TimeTrackerTutorial.PageModels
@@ -19,6 +21,18 @@ namespace TimeTrackerTutorial.PageModels
             set => SetProperty(ref _currentStartTime, value);
         }
 
+        ObservableCollection<WorkItem> _workItems;
+        public ObservableCollection<WorkItem> WorkItems
+        {
+            get => _workItems;
+            set => SetProperty(ref _workItems, value);
+        }
 
+        double _todaysEarnings;
+        public double TodaysEarnings
+        {
+            get => _todaysEarnings;
+            set => SetProperty(ref _todaysEarnings, value);
+        }
     }
 }
