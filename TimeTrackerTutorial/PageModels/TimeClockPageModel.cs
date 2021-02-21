@@ -18,5 +18,7 @@ namespace TimeTrackerTutorial.PageModels
             get => _currentStartTime;
             set => SetProperty(ref _currentStartTime, value);
         }
+
+
     }
 }
