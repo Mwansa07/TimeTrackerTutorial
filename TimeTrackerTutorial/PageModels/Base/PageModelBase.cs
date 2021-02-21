@@ -22,6 +22,11 @@ namespace TimeTrackerTutorial.PageModels.Base
             set => SetProperty(ref _isLoading, value);
         }
 
+        /// <summary>
+        /// Performs Page Model Initialization Asynchronously
+        /// </summary>
+        /// <param name="navigationData"></param>
+        /// <returns></returns>
         public virtual Task InitializeAsync(object navigationData = null)
         {
             return Task.CompletedTask;

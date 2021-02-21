@@ -7,22 +7,22 @@
     <TabbedPage.Children>
         <NavigationPage Title="Time">
             <x:Arguments>
-                <pages:TimeClockPage />
+                <pages:TimeClockPage BindingContext="{Binding TimeClockPageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Summary">
             <x:Arguments>
-                <pages:SummaryPage />
+                <pages:SummaryPage BindingContext="{Binding SummaryPageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Profile">
             <x:Arguments>
-                <pages:ProfilePage />
+                <pages:ProfilePage BindingContext="{Binding ProfilePageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Settings">
             <x:Arguments>
-                <pages:SettingsPage />
+                <pages:SettingsPage BindingContext="{Binding SettingsPageModel}" />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

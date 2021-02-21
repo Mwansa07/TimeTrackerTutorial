@@ -25,5 +25,7 @@
     <Folder Include="Services\Account\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Buttons\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Buttons\" />
   </ItemGroup>
 </Project>
