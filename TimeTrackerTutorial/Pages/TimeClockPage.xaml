@@ -13,7 +13,8 @@
                        TextColor="White" />
                 <Label Text="{Binding CurrentStartTime, StringFormat='You clocked in at {0:h:mm tt}'}"
                        HorizontalTextAlignment="Center"
-                       TextColor="White" />
+                       TextColor="White"
+                       IsVisible="{Binding IsClockedIn}"/>
                 <buttons:BindableButton BindingContext="{Binding ClockInOutButtonModel}"
                                         HorizontalOptions="Center" WidthRequest="200"
                                         BackgroundColor="White" />
