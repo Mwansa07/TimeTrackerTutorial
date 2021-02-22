@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace TimeTrackerTutorial.Services.Account
 {
-    public class AccountService : IAccountService
+    public class MockAccountService : IAccountService
     {
-        public AccountService()
+        public MockAccountService()
         {
         }
 
