@@ -9,6 +9,8 @@ namespace TimeTrackerTutorial.PageModels
 {
     public class TimeClockPageModel : PageModelBase
     {
+        private bool _isClockedIn;
+
         TimeSpan _runningTotal;
         public TimeSpan RunningTotal
         {
@@ -58,7 +60,15 @@ namespace TimeTrackerTutorial.PageModels
 
         private void OnClockInOutAction()
         {
-            throw new NotImplementedException();
+            if (_isClockedIn)
+            {
+                ClockInOutButtonModel.Text = "Clock In";
+            }
+            else
+            {
+                ClockInOutButtonModel.Text = "Clock Out";
+            }
+            _isClockedIn = !_isClockedIn;
         }
     }
 }
