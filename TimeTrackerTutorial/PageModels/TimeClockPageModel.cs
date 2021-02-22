@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TimeTrackerTutorial.Models;
 using TimeTrackerTutorial.PageModels.Base;
 using TimeTrackerTutorial.ViewModels.Buttons;
+using TimeTrackerTutorial.Services.Account;
 
 namespace TimeTrackerTutorial.PageModels
 {
@@ -32,6 +33,7 @@ namespace TimeTrackerTutorial.PageModels
         }
 
         ObservableCollection<WorkItem> _workItems;
+
         public ObservableCollection<WorkItem> WorkItems
         {
             get => _workItems;
@@ -53,9 +55,12 @@ namespace TimeTrackerTutorial.PageModels
         }
 
         private Timer _timer;
+        private IAccountService _accountService;
+        private double _hourlyRate;
 
-        public TimeClockPageModel()
+        public TimeClockPageModel(IAccountService accountService)
         {
+            _accountService = accountService;
             WorkItems = new ObservableCollection<WorkItem>();
             ClockInOutButtonModel = new ButtonModel("Clock In", OnClockInOutAction);
             _timer = new Timer();
@@ -69,10 +74,11 @@ namespace TimeTrackerTutorial.PageModels
             RunningTotal += TimeSpan.FromSeconds(1);
         }
 
-        public override Task InitializeAsync(object navigationData = null)
+        public override async Task InitializeAsync(object navigationData = null)
         {
             RunningTotal = new TimeSpan();
-            return base.InitializeAsync(navigationData);
+            _hourlyRate = await _accountService.GetCurrentPayRateAsync();
+            await base.InitializeAsync(navigationData);
         }
 
         private void OnClockInOutAction()
@@ -80,6 +86,8 @@ namespace TimeTrackerTutorial.PageModels
             if (IsClockedIn)
             {
                 _timer.Enabled = false;
+                TodaysEarnings += _hourlyRate * RunningTotal.TotalHours;
+                RunningTotal = TimeSpan.Zero;
                 ClockInOutButtonModel.Text = "Clock In";
                 WorkItems.Insert(0, new WorkItem
                 {

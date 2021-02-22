@@ -49,7 +49,7 @@
             </ListView>
 
             <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}" Padding="10">
-                <Label Text="{Binding TodaysEarnings, StringFormat='Earnings Today: {0}'}"
+                <Label Text="{Binding TodaysEarnings, StringFormat='Earnings Today: {0:C}'}"
                        HorizontalOptions="Center"
                        TextColor="White"/>
             </StackLayout>
