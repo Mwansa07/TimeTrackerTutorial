@@ -2,6 +2,8 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Dashboard"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
             xmlns:pages="clr-namespace:TimeTrackerTutorial.Pages"
              x:Class="TimeTrackerTutorial.Pages.DashboardPage">
     <TabbedPage.Children>
