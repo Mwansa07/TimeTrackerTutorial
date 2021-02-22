@@ -68,6 +68,11 @@ namespace TimeTrackerTutorial.PageModels
             if (IsClockedIn)
             {
                 ClockInOutButtonModel.Text = "Clock In";
+                WorkItems.Insert(0, new WorkItem
+                {
+                    Start = CurrentStartTime,
+                    End = DateTime.Now
+                });
             }
             else
             {

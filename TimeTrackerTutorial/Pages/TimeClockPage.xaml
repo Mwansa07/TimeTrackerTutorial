@@ -33,9 +33,15 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Start}" HorizontalOptions="FillAndExpand" />
-                                <Label Text="{Binding End}" HorizontalOptions="FillAndExpand" />
-                                <Label Text="{Binding Total}" HorizontalOptions="FillAndExpand" />
+                                <Label Text="{Binding Start, StringFormat='{}{0:h:mm:ss tt}'}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand" />
+                                <Label Text="{Binding End, StringFormat='{}{0:h:mm:ss tt}'}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand" />
+                                <Label Text="{Binding Total, StringFormat='{}{0:h\\:mm\\:ss}'}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
