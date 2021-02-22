@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Timers;
 using System.Threading.Tasks;
 using TimeTrackerTutorial.Models;
 using TimeTrackerTutorial.PageModels.Base;
@@ -51,10 +52,21 @@ namespace TimeTrackerTutorial.PageModels
             set => SetProperty(ref _clockInOutButtonModel, value);
         }
 
+        private Timer _timer;
+
         public TimeClockPageModel()
         {
             WorkItems = new ObservableCollection<WorkItem>();
             ClockInOutButtonModel = new ButtonModel("Clock In", OnClockInOutAction);
+            _timer = new Timer();
+            _timer.Interval = 1000;
+            _timer.Enabled = false;
+            _timer.Elapsed += _timer_Elapsed;
+        }
+
+        private void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            RunningTotal += TimeSpan.FromSeconds(1);
         }
 
         public override Task InitializeAsync(object navigationData = null)
@@ -67,6 +79,7 @@ namespace TimeTrackerTutorial.PageModels
         {
             if (IsClockedIn)
             {
+                _timer.Enabled = false;
                 ClockInOutButtonModel.Text = "Clock In";
                 WorkItems.Insert(0, new WorkItem
                 {
@@ -77,6 +90,7 @@ namespace TimeTrackerTutorial.PageModels
             else
             {
                 CurrentStartTime = DateTime.Now;
+                _timer.Enabled = true;
                 ClockInOutButtonModel.Text = "Clock Out";
             }
             IsClockedIn = !IsClockedIn;
