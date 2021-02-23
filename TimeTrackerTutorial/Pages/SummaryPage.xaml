@@ -17,7 +17,7 @@
             <Frame>
                 <StackLayout>
                     <Label Text="Payment Date for this Period" />
-                    <Label Text="{Binding CurrentPeriodPayDate}"/>
+                    <Label Text="{Binding CurrentPeriodPayDate, StringFormat='{}{0:MMMM d, yyyy'}"/>
                 </StackLayout>
             </Frame>
 
