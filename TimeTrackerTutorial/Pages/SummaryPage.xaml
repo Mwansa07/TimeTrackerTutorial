@@ -29,12 +29,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Date}"
-                                               HorizontalOptions="StartAndExpand" />
-                                        <Label Text="{Binding Earnings}"
-                                               HorizontalOptions="End" />
-                                    </StackLayout>
+                                    
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
