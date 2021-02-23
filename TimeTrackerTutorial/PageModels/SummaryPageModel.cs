@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TimeTrackerTutorial.Models;
 using TimeTrackerTutorial.PageModels.Base;
+using TimeTrackerTutorial.Services.Statement;
 
 namespace TimeTrackerTutorial.PageModels
 {
@@ -29,15 +31,23 @@ namespace TimeTrackerTutorial.PageModels
         }
 
         private List<PayStatement> _statements;
+
         public List<PayStatement> Statements
         {
             get => _statements;
             set => SetProperty(ref _statements, value);
         }
 
-        public SummaryPageModel()
+        private IStatementService _statementService;
+        public SummaryPageModel(IStatementService statementService)
         {
+            _statementService = statementService;
+        }
 
+        public override async Task InitializeAsync(object navigationData = null)
+        {
+            Statements = await _statementService.GetStatementHistoryAsync();
+            await base.InitializeAsync(navigationData);
         }
     }
 }
