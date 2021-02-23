@@ -26,7 +26,7 @@ namespace TimeTrackerTutorial.Models
         public double Amount { get; set; }
 
         /// <summary>
-        /// 
+        /// A list of associated work items for the pay period
         /// </summary>
         public List<WorkItem> WorkItems { get; set; }
     }
