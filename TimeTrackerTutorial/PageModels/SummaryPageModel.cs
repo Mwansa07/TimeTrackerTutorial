@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TimeTrackerTutorial.Models;
 using TimeTrackerTutorial.PageModels.Base;
 using TimeTrackerTutorial.Services.Statement;
+using TimeTrackerTutorial.ViewModels;
 
 namespace TimeTrackerTutorial.PageModels
 {
@@ -30,9 +32,9 @@ namespace TimeTrackerTutorial.PageModels
             set => SetProperty(ref _currentPeriodPayDate, value);
         }
 
-        private List<PayStatement> _statements;
+        private List<PayStatementViewModel> _statements;
 
-        public List<PayStatement> Statements
+        public List<PayStatementViewModel> Statements
         {
             get => _statements;
             set => SetProperty(ref _statements, value);
@@ -46,7 +48,11 @@ namespace TimeTrackerTutorial.PageModels
 
         public override async Task InitializeAsync(object navigationData = null)
         {
-            Statements = await _statementService.GetStatementHistoryAsync();
+            var statements = await _statementService.GetStatementHistoryAsync();
+            if (statements != null)
+            {
+                Statements = statements.Select(s => new PayStatementViewModel(s)).ToList();
+            }
             await base.InitializeAsync(navigationData);
         }
     }

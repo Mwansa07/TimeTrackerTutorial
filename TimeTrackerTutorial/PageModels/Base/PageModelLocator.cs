@@ -4,6 +4,7 @@ using TimeTrackerTutorial.Pages;
 using TimeTrackerTutorial.Services.Account;
 using TimeTrackerTutorial.Services.Navigation;
 using TimeTrackerTutorial.Services.Statement;
+using TimeTrackerTutorial.Services.Work;
 using TinyIoC;
 using Xamarin.Forms;
 
@@ -31,6 +32,7 @@ namespace TimeTrackerTutorial.PageModels.Base
             _container.Register<INavigationService, NavigationService>();
             _container.Register<IAccountService, MockAccountService>();
             _container.Register<IStatementService, MockStatementService>();
+            _container.Register<IWorkService, MockWorkService>();
         }
 
         public static T Resolve<T>() where T : class
