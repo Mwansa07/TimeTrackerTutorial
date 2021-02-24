@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:TimeTrackerTutorial.Views"
+             xmlns:labels="clr-namespace:TimeTrackerTutorial.Views.Labels"
              x:Class="TimeTrackerTutorial.Pages.SummaryPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <!-- This Pay Period Overview -->
             <Frame>
                 <StackLayout>
-                    <Label Text="Current Pay Period Estimate" />
+                    <labels:TitleLabel Text="Current Pay Period Estimate" />
                     <Label Text="{Binding CurrentPayDateRange}" />
                     <Label Text="{Binding CurrentPeriodEarnings, StringFormat='{}{0:C}'}" />
                 </StackLayout>
@@ -17,15 +18,15 @@
             <!-- Next pay date -->
             <Frame>
                 <StackLayout>
-                    <Label Text="Payment Date for this Period" />
-                    <Label Text="{Binding CurrentPeriodPayDate, StringFormat='{}{0:MMMM d, yyyy'}"/>
+                    <labels:TitleLabel Text="Payment Date for this Period" />
+                    <Label Text="{Binding CurrentPeriodPayDate, StringFormat='{}{0:MMMM d, yyyy}'}"/>
                 </StackLayout>
             </Frame>
 
             <!-- Previous Pay statements-->
             <Frame>
                 <StackLayout>
-                    <Label Text="Pay Statements" />
+                    <labels:TitleLabel Text="Pay Statements" />
                     <ListView ItemsSource="{Binding Statements}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>

@@ -33,7 +33,6 @@ namespace TimeTrackerTutorial.PageModels
         }
 
         private List<PayStatementViewModel> _statements;
-
         public List<PayStatementViewModel> Statements
         {
             get => _statements;
@@ -52,8 +51,34 @@ namespace TimeTrackerTutorial.PageModels
             if (statements != null)
             {
                 Statements = statements.Select(s => new PayStatementViewModel(s)).ToList();
+                var lastStatement = statements.FirstOrDefault();
+                if (lastStatement != null)
+                {
+                    var today = DateTime.Now;
+                    var max = 100;
+                    var currentCount = 0;
+                    var currentEnd = lastStatement.End;
+                    while (currentEnd < today && currentCount < max)
+                    {
+                        currentEnd = currentEnd.AddDays(14);
+                        ++currentCount;
+                    }
+                    if (currentEnd > today)
+                    {
+                        if (currentEnd.AddDays(-13) < today)
+                        {
+                            SetDateRange(currentEnd.AddDays(-13), currentEnd);
+                        }
+                    }
+                }
             }
             await base.InitializeAsync(navigationData);
+        }
+
+        private void SetDateRange(DateTime start, DateTime end)
+        {
+            CurrentPayDateRange = start.ToString("MMMM d") + " - " + end.ToString("MMMM d, yyyy");
+            CurrentPeriodPayDate = end.AddDays(6);
         }
     }
 }
